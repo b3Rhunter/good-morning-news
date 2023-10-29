@@ -1,4 +1,3 @@
-// App.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NewsFeed from './components/NewsFeed';
@@ -6,7 +5,7 @@ import StockTicker from './components/StockTicker';
 import Logo from './imgs/logo.svg';
 
 function App() {
-    const [data, setData] = useState({ newsFeed: [], stockData: [] });
+    const [data, setData] = useState({ newsFeed: [], cryptoPrices: [], stockData: [] });
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,6 +29,8 @@ function App() {
         fetchData();
     }, []);
 
+    const combinedData = [...data.cryptoPrices, ...data.stockData];
+
     return (
         <div className="App">
             <header>
@@ -38,7 +39,7 @@ function App() {
               <button>connect</button>
             </header>
             <NewsFeed news={data.newsFeed} />
-            <StockTicker stocks={data.stockData} />
+            <StockTicker stocks={combinedData} />
         </div>
     );
 }
