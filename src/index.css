@@ -4,6 +4,12 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  cursor: default;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
 }
 
 body {
@@ -63,6 +69,7 @@ h1 {
 /* BUTTONS */
 button {
   background-color: transparent;
+  color: #333;
   border: 1px solid rgba(0, 0, 0, 0.212);
   border-radius: 50em;
   padding: 0.5em 1em;
@@ -74,21 +81,22 @@ button {
 
 button:hover {
   transform: translateY(-4px);
-  background-color: black;
+  background-color: #333;
   color: white;
 }
 
 button:active {
   transform: translateY(4px);
   background-color: rgba(0, 0, 0, 0);
-  color: rgb(0, 0, 0);
+  color: #333;
 }
 
 /* NEWS FEED */
 .news-feed {
   display: flex;
+  align-items: center;
   flex-direction: column;
-
+  gap: 1em;
   height: 75svh;
   height: 75vh;
   max-width: 960px;
@@ -122,7 +130,10 @@ button:active {
 .news-story {
   padding: 10px 0;
   border-bottom: 1px solid #00000038;
+  margin-inline: 2em;
+  padding-bottom: 1em;
 
+  width: 80%;
   &:last-child {
       border-bottom: none;
   }
@@ -193,10 +204,6 @@ button:active {
 
   padding: 8px 16px;
   transition: background-color 0.3s ease-in-out;
-
-  &:hover {
-      background-color: #f4f4f9;
-  }
 }
 
 .stock-item span {
@@ -209,11 +216,12 @@ button:active {
   font-weight: bold;
   color: #34495e;
   margin-right: 10px;
+  font-size: 1.3em;
 }
 
 .stock-price {
-  font-size: 1.1em;
-  color: #16a085;
+  font-size: 1.3em;
+  color: #0992d1;
 }
 
 
@@ -225,5 +233,46 @@ button:active {
   }
   100% {
     transform: translateX(-50%); 
+  }
+}
+
+
+
+
+
+
+/* Mobile */
+@media screen and (max-width: 767px) {
+  .news-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    height: 75svh;
+    height: 75vh;
+    width: 100%;
+    max-width: 100%;
+    overflow-y: auto;
+  
+    margin: 1em;
+    padding: 0px;
+    padding-block: 2em;
+  }
+  
+  .news-story {
+    padding: 10px 0;
+    border-bottom: 1px solid #00000038;
+    margin-inline: 1em;
+    padding-bottom: 1em;
+    &:last-child {
+        border-bottom: none;
+    }
+  }
+
+  header h1 {
+    display: none;
+  }
+
+  .stock-ticker {
+    width: 100%;
   }
 }
