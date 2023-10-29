@@ -163,8 +163,7 @@ button:active {
 /* PRICE FEED */
 .stock-ticker {
   display: flex;
-  gap: 40px;
-  overflow-x: auto;
+  overflow: hidden; 
   width: calc(100% - 2em);
   max-width: 960px;
   padding-inline: 40px;
@@ -180,15 +179,11 @@ button:active {
   scrollbar-color: #888 #f4f4f9;
 }
 
-
-
-.stock-ticker::-webkit-scrollbar {
-  height: 8px;
-}
-
-.stock-ticker::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 4px;
+.stock-ticker-content {
+  display: flex;
+  gap: 40px;
+  white-space: nowrap;
+  animation: tickerMove 200s linear infinite;
 }
 
 .stock-item {
@@ -219,4 +214,16 @@ button:active {
 .stock-price {
   font-size: 1.1em;
   color: #16a085;
+}
+
+
+
+/* Animations */
+@keyframes tickerMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); 
+  }
 }
