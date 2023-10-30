@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
+:root {
+  --light-bg: rgb(220, 222, 226);
+  --light-text: #333;
+  --light-border: rgba(0, 0, 0, 0.212);
+  --light-shadow: rgba(0, 0, 0, 0.1);
+  --light-story-bg: #ffffff27;
+  --dark-bg: #212121;
+  --dark-text: #f4f4f9;
+  --dark-border: rgba(255, 255, 255, 0.212);
+  --dark-shadow: rgba(0, 0, 0, 0.1);
+  --dark-story-bg: #34495e27;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -12,10 +25,25 @@ a {
   cursor: pointer;
 }
 
+body[data-theme='dark'] {
+  --current-bg: var(--dark-bg);
+  --current-text: var(--dark-text);
+  --current-border: var(--dark-border);
+  --current-shadow: var(--dark-shadow);
+  --current-story-bg: var(--dark-story-bg);
+}
+
 body {
   margin: 0;
   font-family: monospace;
-  color: #333;
+  background-color: var(--current-bg);
+  color: var(--current-text);
+
+  --current-bg: var(--light-bg);
+  --current-text: var(--light-text);
+  --current-border: var(--light-border);
+  --current-shadow: var(--light-shadow);
+  --current-story-bg: var(--light-story-bg);
 }
 
 code {
@@ -33,16 +61,9 @@ code {
   height: 100svh;
   height: 100vh;
 
-  background-color:hsla(280,21%,92%,1);
-  background-image:
-  radial-gradient(at 66% 52%, rgb(230, 228, 229) 0px, transparent 50%),
-  radial-gradient(at 50% 60%, rgb(205, 205, 219) 0px, transparent 50%),
-  radial-gradient(at 96% 59%, rgb(199, 199, 199) 0px, transparent 50%),
-  radial-gradient(at 65% 79%, rgb(210, 208, 218) 0px, transparent 50%),
-  radial-gradient(at 87% 36%, hsla(307,23%,88%,1) 0px, transparent 50%),
-  radial-gradient(at 51% 70%, rgb(196, 206, 196) 0px, transparent 50%),
-  radial-gradient(at 15% 96%, rgb(176, 190, 202) 0px, transparent 50%);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background-color: var(--current-bg);
+  box-shadow: 0 4px 20px var(--current-shadow);
+
   padding: 20px;
   border-radius: 10px;
 }
@@ -69,8 +90,8 @@ h1 {
 /* BUTTONS */
 button {
   background-color: transparent;
-  color: #333;
-  border: 1px solid rgba(0, 0, 0, 0.212);
+  color: var(--current-text);
+  border: 1px solid var(--current-border);
   border-radius: 50em;
   padding: 0.5em 1em;
   font-size: 16px;
@@ -81,14 +102,14 @@ button {
 
 button:hover {
   transform: translateY(-4px);
-  background-color: #333;
-  color: white;
+  background-color: var(--current-text);
+  color: var(--current-bg);
 }
 
 button:active {
   transform: translateY(4px);
-  background-color: rgba(0, 0, 0, 0);
-  color: #333;
+  color: var(--current-text);
+  border: 1px solid var(--current-border);
 }
 
 /* NEWS FEED */
@@ -104,8 +125,9 @@ button:active {
   overflow-y: auto;
 
   margin: 1em;
-  background-color: #ffffff27;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: var(--current-story-bg);
+  box-shadow: 0 4px 12px var(--current-shadow);
+
   padding: 1em;
   border-radius: 10px;
   scrollbar-width: thin;
@@ -130,7 +152,7 @@ button:active {
 
 .news-story {
   padding: 10px 0;
-  border-bottom: 1px solid #00000038;
+  border-bottom: 1px solid var(--current-border);
   margin-inline: 2em;
   padding-bottom: 1em;
 
@@ -142,7 +164,7 @@ button:active {
 
 .news-title {
   font-weight: bold;
-  color: #2c3e50;
+  color: var(--current-text);
   text-decoration: none;
   margin-bottom: 8px;
   transition: color 0.3s ease-in-out;
@@ -160,13 +182,13 @@ button:active {
 .news-info {
   font-size: 1em;
   line-height: 1.6; 
-  color: #555;
+  color: var(--current-text);
   margin-bottom: 10px;
 }
 
 .news-timestamp {
   font-size: 0.85em;
-  color: #a0a5aa; 
+  color: var(--current-text); 
 }
 
 
@@ -184,8 +206,8 @@ button:active {
 
   border-radius: 10px;
 
-  background-color: #ffffff28;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: var(--current-story-bg);
+  box-shadow: 0 4px 12px var(--current-shadow);
   border-radius: 10px;
   scrollbar-width: thin;
   scrollbar-color: #888 #f4f4f9;
@@ -215,7 +237,7 @@ button:active {
 
 .stock-symbol {
   font-weight: bold;
-  color: #34495e;
+  color: var(--current-text);
   margin-right: 10px;
   font-size: 1.3em;
 }
@@ -237,8 +259,27 @@ button:active {
   }
 }
 
+.theme-toggle {
+  border-radius: 50% !important;
+  width: 50px;
+  height: 50px;
 
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--current-text);
+  color: transparent;
+  text-shadow: 0 0 0 var(--current-bg);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.737);
+  font-size: 1.7em;
+}
 
 
 
@@ -262,7 +303,7 @@ button:active {
 
   .news-story {
     padding: 10px 0;
-    border-bottom: 1px solid #00000038;
+    border-bottom: var(--current-border);
     margin-inline: 1em;
     padding-bottom: 1em;
     &:last-child {
