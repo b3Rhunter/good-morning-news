@@ -5,6 +5,7 @@ import StockTicker from './components/StockTicker';
 import Logo from './imgs/logo.svg';
 
 function App() {
+    const [loading, setLoading] = useState(true);
     const [data, setData] = useState({ newsFeed: [], cryptoPrices: [], stockData: [] });
 
     useEffect(() => {
@@ -21,8 +22,10 @@ function App() {
             try {
                 const response = await axios.request(options);
                 setData(response.data);
+                setLoading(false);
             } catch (error) {
                 console.error(error);
+                setLoading(false);
             }
         }
 
@@ -33,13 +36,19 @@ function App() {
 
     return (
         <div className="App">
-            <header>
+            {loading ? (
+                <div className="loading-spinner"></div>
+            ) : (
+                <>
+                            <header>
               <img src={Logo} alt='logo' />
               <h1>Good Morning News</h1>
               <button>connect</button>
             </header>
-            <NewsFeed news={data.newsFeed} />
-            <StockTicker stocks={combinedData} />
+                    <NewsFeed news={data.newsFeed} />
+                    <StockTicker stocks={combinedData} />
+                </>
+            )}
         </div>
     );
 }

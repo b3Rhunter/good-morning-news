@@ -278,3 +278,21 @@ button:active {
     width: 100%;
   }
 }
+
+
+
+/* Loading Spinner */
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  border: 30px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 30px solid #333;
+  width: 150px;
+  height: 150px;
+  animation: spinner 1.66s linear infinite;
+}
