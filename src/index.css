@@ -36,6 +36,10 @@ body[data-theme='dark'] {
 body {
   margin: 0;
   font-family: monospace;
+
+  height: 100svh;
+  height: 100vh;
+  overflow: hidden;
   background-color: var(--current-bg);
   color: var(--current-text);
 
