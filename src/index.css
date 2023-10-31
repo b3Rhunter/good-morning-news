@@ -40,6 +40,7 @@ body {
   height: 100svh;
   height: 100vh;
   overflow: hidden;
+
   background-color: var(--current-bg);
   color: var(--current-text);
 
@@ -59,11 +60,11 @@ code {
 .App {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
-  height: 100svh;
-  height: 100vh;
+  height: 100%;
+  overflow: hidden;
 
   background-color: var(--current-bg);
   box-shadow: 0 4px 20px var(--current-shadow);
@@ -122,8 +123,10 @@ button:active {
   align-items: center;
   flex-direction: column;
   gap: 1em;
-  height: 75svh;
-  height: 75vh;
+
+  max-height: calc(75svh - 100px);
+  max-height: calc(75svh - 100px);
+
   max-width: 960px;
   min-width: 960px;
   overflow-y: auto;
